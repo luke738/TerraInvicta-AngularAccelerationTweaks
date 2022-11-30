@@ -58,7 +58,7 @@ namespace AngularAccelerationTweaks
                 float multiplier = AngularAccelerationCalcHelper.CalculateAngularAccelerationMultiplier(__instance.template);
 
                 // Scale angular accel by spiker multiplier and hull mass
-                FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0} undamaged, replaced with {1}", __result, __result* multiplier));
+                // FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0} undamaged, replaced with {1}", __result, __result* multiplier));
                 __result *= multiplier;
             }
         }
@@ -74,7 +74,7 @@ namespace AngularAccelerationTweaks
                 float multiplier = AngularAccelerationCalcHelper.CalculateAngularAccelerationMultiplier(__instance);
 
                 // Scale angular accel by spiker multiplier and hull mass
-                FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0} base, replaced with {1}", __result, __result * multiplier));
+                // FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0} base, replaced with {1}", __result, __result * multiplier));
                 __result *= multiplier;
             }
         }
@@ -124,13 +124,13 @@ namespace AngularAccelerationTweaks
 
                 // Adjust angular acceleration computed by original function
                 float old_angular_acceleration_rads2 = __instance.angular_acceleration_rads2;
-                float new_angular_acceleration_rads2 = __instance.angular_acceleration_rads2 / spiker_multiplier;
+                float new_angular_acceleration_rads2 = Mathf.Max(__instance.minimumAngularAcceleration_rads2, __instance.angular_acceleration_rads2 / spiker_multiplier);
 
                 // Compute max angular velocity again but cap at species g-limit
-                float new_max_angular_velocity_rads = Mathf.Max(new_angular_acceleration_rads2 * 5f, angular_velocity_limit_rads);
+                float new_max_angular_velocity_rads = Mathf.Min(new_angular_acceleration_rads2 * 5f, angular_velocity_limit_rads);
 
                 // Update ship object
-                FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0}rad/s^2, {1}rad/s w/damage, replaced with {2}rad/s^2, {3}rad/s", __instance.angular_acceleration_rads2, __instance.max_angular_velocity_rads2, new_angular_acceleration_rads2, new_max_angular_velocity_rads));
+                // FileLog.Log(string.Format("[SpikersBoostAngularAcceleration] Game set {0}rad/s^2, {1}rad/s w/damage, replaced with {2}rad/s^2, {3}rad/s", __instance.angular_acceleration_rads2, __instance.max_angular_velocity_rads2, new_angular_acceleration_rads2, new_max_angular_velocity_rads));
                 traverse.Property("angular_acceleration_rads2").SetValue(new_angular_acceleration_rads2);
                 traverse.Property("max_angular_velocity_rads2").SetValue(new_max_angular_velocity_rads);
 
