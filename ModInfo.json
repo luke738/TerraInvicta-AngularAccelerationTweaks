@@ -1,0 +1,12 @@
+{
+  "Id": "AngularAccelerationTweaks",
+  "DisplayName": "Angular Acceleration Tweaks",
+  "Author": "luke738",
+  "Version": "1.0.0",
+  "EntryMethod": "AngularAccelerationTweaks.AngularAccelerationTweaks.Load",
+  "title": "Angular Accleration Tweaks",
+  "author": "luke738",
+  "description": "Scales vector thrust magnitude with hull mass (as if a fixed percentage of the hull was maneuvering systems), and makes spiker utility modules boost vector thrust also. Requires Unity Mod Manager.",
+  "mod url": "https://github.com/luke738/TerraInvicta-AngularAccelerationTweaks",
+  "Website": "https://github.com/luke738/TerraInvicta-AngularAccelerationTweaks"
+}
